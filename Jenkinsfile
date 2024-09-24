@@ -8,12 +8,20 @@ pipeline {
                 git url: 'https://github.com/UMAR0800/simple-python-app.git', credentialsId: 'github-token'
             }
         }
-        
+
+        stage('Setup Virtual Environment') {
+            steps {
+                // Create a virtual environment
+                sh 'python3 -m venv venv' // Create virtual environment
+                sh '. venv/bin/activate'   // Activate the virtual environment
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 // Install dependencies
                 echo 'Installing dependencies...'
-                sh 'pip3 install -r requirements.txt' // Use pip3 for Python 3
+                sh '. venv/bin/activate && pip install -r requirements.txt' // Use pip from the virtual environment
             }
         }
 
@@ -21,7 +29,7 @@ pipeline {
             steps {
                 // Run the application
                 echo 'Running application...'
-                sh 'python3 app.py' // Use python3 for the application
+                sh '. venv/bin/activate && python app.py' // Use python from the virtual environment
             }
         }
     }
