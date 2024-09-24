@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from the GitHub repository
-                git url: 'https://github.com/umar0800/simple-python-app.git', credentialsId: 'github-token'
+                git url: 'https://github.com/UMAR0800/simple-python-app.git', credentialsId: 'github-token'
             }
         }
         
@@ -13,7 +13,7 @@ pipeline {
             steps {
                 // Install dependencies
                 echo 'Installing dependencies...'
-                sh 'pip install -r requirements.txt' // Install requirements if there are any
+                sh 'pip3 install -r requirements.txt' // Use pip3 for Python 3
             }
         }
 
@@ -21,7 +21,7 @@ pipeline {
             steps {
                 // Run the application
                 echo 'Running application...'
-                sh 'python app.py'
+                sh 'python3 app.py' // Use python3 for the application
             }
         }
     }
