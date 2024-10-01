@@ -1,5 +1,1 @@
-# requirements.txt
-# No dependencies for this simple app
-# requirements.txt
-# No dependencies for this simple app
-# no chnage
+Flask==2.0.3
